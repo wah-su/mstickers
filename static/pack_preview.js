@@ -3,6 +3,7 @@ const packName = document.getElementById("preview_sticker_pack_name");
 const packAuthor_by = document.getElementById("preview_sticker_pack_author_by");
 const packAuthor = document.getElementById("preview_sticker_pack_author");
 const packImage = document.getElementById("preview_sticker_pack_image");
+const packStickers = document.getElementById("preview_sticker_pack_stickers");
 const packLinkTG = document.getElementById("preview_sticker_pack_add_tg");
 const packLinkFC = document.getElementById("preview_sticker_pack_add_fc");
 const packLinkCI = document.getElementById("preview_sticker_pack_add_ci");
@@ -64,6 +65,15 @@ async function loadPack(pack) {
   updatePackInfo(data);
 }
 
+function getStickerImage(stickerID) {
+  const _image_path = `${stickerID.slice(0, 2)}/${stickerID.slice(
+    2,
+    4
+  )}/${stickerID.slice(4)}`;
+
+  return `${index.homeserver_url}/__thumbnail/${_image_path}`;
+}
+
 function updatePackInfo(data) {
   packName.innerHTML = data.title;
 
@@ -77,13 +87,7 @@ function updatePackInfo(data) {
     }
   }
 
-  const _image_id = data.stickers[0].id;
-  const _image_path = `${_image_id.slice(0, 2)}/${_image_id.slice(
-    2,
-    4
-  )}/${_image_id.slice(4)}`;
-
-  packImage.src = `${index.homeserver_url}/__thumbnail/${_image_path}`;
+  packImage.src = getStickerImage(data.stickers[0].id);
 
   if (data.hasOwnProperty("rating") && data.rating) {
     switch (data.rating.toLowerCase()) {
@@ -118,6 +122,15 @@ function updatePackInfo(data) {
     packLinkFC.classList.add("flex");
     packLinkCI.classList.remove("hidden");
     packLinkCI.classList.add("flex");
+  }
+
+  for (let i = 0; i < data.stickers.length; i++) {
+    const sticker = data.stickers[i];
+    const stickerImage = document.createElement("img");
+    stickerImage.src = getStickerImage(sticker.id);
+    stickerImage.alt = sticker.body;
+    stickerImage.classList.add('object-contain', 'w-20')
+    packStickers.appendChild(stickerImage);
   }
 }
 
