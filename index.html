@@ -9,12 +9,12 @@
 </head>
 
 <body>
-    <div class="absolute inset-0 -z-10 tiledBackground"></div>
-    <div class="absolute inset-0 -z-20 bg-gradient-to-b from-gray-900 to-black"></div>
-    <div class="container flex flex-col items-center justify-center min-w-full min-h-screen gap-4 mx-auto">
+    <div class="fixed inset-0 min-h-screen -z-10 tiledBackground"></div>
+    <div class="fixed inset-0 min-h-screen -z-20 bg-gradient-to-b from-gray-900 to-black"></div>
+    <div class="container flex flex-col items-center justify-center min-h-screen gap-4 p-4 mx-auto">
 
-        <div class="flex-col hidden gap-4" id="preview_sticker_pack">
-            <div class="flex gap-4 px-4 py-2 rounded-lg shadow-lg bg-stone-800 text-slate-200 aspect-video"
+        <div class="flex-col hidden gap-4 w-full md:w-[600px]" id="preview_sticker_pack">
+            <div class="flex flex-col items-center justify-center gap-4 p-4 rounded-lg shadow-lg md:flex-row bg-stone-800 text-slate-200"
                 id="preview_sticker_pack">
                 <img src="static/images/cinny.png" class="object-contain w-64" alt="" id="preview_sticker_pack_image" />
                 <div class="flex flex-col justify-center gap-2">
@@ -32,32 +32,32 @@
                 </div>
             </div>
             <div class="flex flex-col gap-2">
-                <a class="bg-[#2f7ca3] h-16 gap-2 items-center px-4 block rounded-lg hidden hover:scale-110 transition-transform" id="preview_sticker_pack_add_tg">
+                <a class="bg-[#2f7ca3] h-16 gap-2 items-center px-4 rounded-lg hidden hover:scale-110 transition-transform" id="preview_sticker_pack_add_tg">
                     <img src="static/images/telegram.png" alt="" class="object-contain w-10" />
                     <p class="text-2xl text-slate-50">Telegram</p>
                 </a>
-                <button onclick="toggleElementInstruction()" class="block bg-[#259d7b] h-16 gap-2 items-center px-4 rounded-lg flex hover:scale-110 transition-transform" id="preview_sticker_pack_add_el">
+                <button onclick="toggleElementInstruction()" class="bg-[#259d7b] h-16 gap-2 items-center px-4 rounded-lg flex hover:scale-110 transition-transform" id="preview_sticker_pack_add_el">
                     <img src="static/images/element.png" alt="" class="object-contain w-10" />
                     <p class="text-2xl text-slate-50">Element</p>
                 </button>
-                <a class="bg-[#282443] h-16 gap-2 items-center px-4 block rounded-lg hidden hover:scale-110 transition-transform" id="preview_sticker_pack_add_fc">
+                <a class="bg-[#282443] h-16 gap-2 items-center px-4 rounded-lg hidden hover:scale-110 transition-transform" id="preview_sticker_pack_add_fc">
                     <img src="static/images/fluffychat.png" alt="" class="object-contain w-10" />
                     <p class="text-2xl text-slate-50">FluffyChat</p>
                 </a>
-                <a class="bg-[#373737] h-16 gap-2 items-center px-4 block rounded-lg hidden hover:scale-110 transition-transform" id="preview_sticker_pack_add_ci">
+                <a class="bg-[#373737] h-16 gap-2 items-center px-4 rounded-lg hidden hover:scale-110 transition-transform" id="preview_sticker_pack_add_ci">
                     <img src="static/images/cinny.png" alt="" class="object-contain w-10" />
                     <p class="text-2xl text-slate-50">Cinny</p>
                 </a>
             </div>
         </div>
 
-        <div class="absolute inset-0 z-10 hidden bg-black opacity-40" id="preview_sticker_pack_add_to_element_overlay"></div>
+        <div class="absolute inset-0 z-10 hidden min-h-screen bg-black opacity-40" id="preview_sticker_pack_add_to_element_overlay"></div>
 
-        <div class="absolute top-[25%] max-w-[768px] text-white z-20 hidden flex-col gap-4 p-4 rounded-lg shadow-lg bg-stone-900" id="preview_sticker_pack_add_to_element">
+        <div class="absolute md:top-[25%] max-w-[90%] md:max-w-[768px] text-white z-20 hidden flex-col gap-4 p-4 rounded-lg shadow-lg bg-stone-900" id="preview_sticker_pack_add_to_element">
             <p>
             Type /devtools in chat. Other -> Explore account data in Element Web (not "room account data", must be the global one), edit the m.widgets account data event to have the following content:
             </p>
-            <p class="whitespace-pre">
+            <p class="md:whitespace-pre">
 {
     "stickerpicker": {
         "content": {
@@ -81,6 +81,15 @@
             The theme=$theme query parameter will make the widget conform to Element's theme automatically. You can also use light, dark or black instead of $theme to always use a specific theme.
             </p>
             <button class="flex items-center justify-center w-full py-2 text-2xl bg-red-600 rounded-lg" onclick="toggleElementInstruction()">Close</button>
+        </div>
+
+        <div class="w-full md:w-[600px]">
+            <div class="p-4 rounded-lg shadow-lg bg-stone-800 text-slate-200 ">
+                <p class="text-2xl">Pack Preview</p>
+                <div class="flex flex-wrap gap-4 mt-4 " id="preview_sticker_pack_stickers">
+                    <img src="static/images/cinny.png" alt="" class="hidden object-contain w-20" />
+                </div>
+            </div>
         </div>
 
     </div>
