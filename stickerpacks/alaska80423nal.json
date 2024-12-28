@@ -1,0 +1,168 @@
+{
+    "title": "Alaska",
+    "id": "alaska80423nal",
+    "rating": "Questionable",
+    "author": {
+        "name": "nal",
+        "url": "https://t.me/nowandlater"
+    },
+    "room_id": "!GmmYUrvDBOuyHUomZd:wah.su",
+    "stickers": [
+        {
+            "body": "\ud83d\ude02",
+            "info": {
+                "h": 256,
+                "w": 256,
+                "size": 41448,
+                "mimetype": "image/png"
+            },
+            "msgtype": "m.sticker",
+            "url": "mxc://wah.su/JnXJQGjdotOepiyIAQMhBIFh",
+            "id": "JnXJQGjdotOepiyIAQMhBIFh"
+        },
+        {
+            "body": "\u2615\ufe0f",
+            "info": {
+                "h": 256,
+                "w": 256,
+                "size": 37898,
+                "mimetype": "image/png"
+            },
+            "msgtype": "m.sticker",
+            "url": "mxc://wah.su/MqGTxGiGTxkOOPBmJIukaUbm",
+            "id": "MqGTxGiGTxkOOPBmJIukaUbm"
+        },
+        {
+            "body": "\ud83d\ude07",
+            "info": {
+                "h": 256,
+                "w": 256,
+                "size": 35832,
+                "mimetype": "image/png"
+            },
+            "msgtype": "m.sticker",
+            "url": "mxc://wah.su/iOISDjCSLoRNuCypeeqmSIRo",
+            "id": "iOISDjCSLoRNuCypeeqmSIRo"
+        },
+        {
+            "body": "\u263a\ufe0f",
+            "info": {
+                "h": 256,
+                "w": 256,
+                "size": 37222,
+                "mimetype": "image/png"
+            },
+            "msgtype": "m.sticker",
+            "url": "mxc://wah.su/XaeKDIyAOnKCEEYbLbAMxeLL",
+            "id": "XaeKDIyAOnKCEEYbLbAMxeLL"
+        },
+        {
+            "body": "\u263a\ufe0f",
+            "info": {
+                "h": 256,
+                "w": 256,
+                "size": 43144,
+                "mimetype": "image/png"
+            },
+            "msgtype": "m.sticker",
+            "url": "mxc://wah.su/OJqEuBvANaXQpqXFsbZYAsjb",
+            "id": "OJqEuBvANaXQpqXFsbZYAsjb"
+        },
+        {
+            "body": "\ud83d\ude08",
+            "info": {
+                "h": 256,
+                "w": 256,
+                "size": 45134,
+                "mimetype": "image/png"
+            },
+            "msgtype": "m.sticker",
+            "url": "mxc://wah.su/IfPsXqXPPiZvbnzIYKdousOc",
+            "id": "IfPsXqXPPiZvbnzIYKdousOc"
+        },
+        {
+            "body": "\ud83d\ude0e",
+            "info": {
+                "h": 256,
+                "w": 256,
+                "size": 41914,
+                "mimetype": "image/png"
+            },
+            "msgtype": "m.sticker",
+            "url": "mxc://wah.su/ggRDyoutVnbiRQQkhNarVTsQ",
+            "id": "ggRDyoutVnbiRQQkhNarVTsQ"
+        },
+        {
+            "body": "\ud83d\udca6",
+            "info": {
+                "h": 256,
+                "w": 256,
+                "size": 41746,
+                "mimetype": "image/png"
+            },
+            "msgtype": "m.sticker",
+            "url": "mxc://wah.su/SNVAzFHKmRNdMXBrGzuXkPvr",
+            "id": "SNVAzFHKmRNdMXBrGzuXkPvr"
+        },
+        {
+            "body": "\ud83d\udca6",
+            "info": {
+                "h": 256,
+                "w": 256,
+                "size": 30316,
+                "mimetype": "image/png"
+            },
+            "msgtype": "m.sticker",
+            "url": "mxc://wah.su/vzlrkNTGTcQJpgreofRpyONc",
+            "id": "vzlrkNTGTcQJpgreofRpyONc"
+        },
+        {
+            "body": "\ud83d\udca6",
+            "info": {
+                "h": 256,
+                "w": 256,
+                "size": 39086,
+                "mimetype": "image/png"
+            },
+            "msgtype": "m.sticker",
+            "url": "mxc://wah.su/otcClfVnzsfNmdjnjmnNGNNq",
+            "id": "otcClfVnzsfNmdjnjmnNGNNq"
+        },
+        {
+            "body": "\ud83d\udca6",
+            "info": {
+                "h": 256,
+                "w": 256,
+                "size": 32220,
+                "mimetype": "image/png"
+            },
+            "msgtype": "m.sticker",
+            "url": "mxc://wah.su/LOEChIxqybEjxnwnSkJsIaQZ",
+            "id": "LOEChIxqybEjxnwnSkJsIaQZ"
+        },
+        {
+            "body": "\ud83d\udca6",
+            "info": {
+                "h": 256,
+                "w": 256,
+                "size": 48252,
+                "mimetype": "image/png"
+            },
+            "msgtype": "m.sticker",
+            "url": "mxc://wah.su/qpFEWpByLgsWyqBiaygvXxQJ",
+            "id": "qpFEWpByLgsWyqBiaygvXxQJ"
+        },
+        {
+            "body": "\u2139\ufe0f",
+            "info": {
+                "h": 256,
+                "w": 256,
+                "size": 28126,
+                "mimetype": "image/png"
+            },
+            "msgtype": "m.sticker",
+            "url": "mxc://wah.su/pxDJwcwrivsGaiqifBIUBHze",
+            "id": "pxDJwcwrivsGaiqifBIUBHze"
+        }
+    ]
+}
