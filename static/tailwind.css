@@ -600,6 +600,18 @@ video {
   inset: 0px;
 }
 
+.top-0 {
+  top: 0px;
+}
+
+.top-16 {
+  top: 4rem;
+}
+
+.top-8 {
+  top: 2rem;
+}
+
 .-z-10 {
   z-index: -10;
 }
@@ -920,6 +932,14 @@ video {
 @media (min-width: 768px) {
   .md\:top-\[25\%\] {
     top: 25%;
+  }
+
+  .md\:top-64 {
+    top: 16rem;
+  }
+
+  .md\:top-32 {
+    top: 8rem;
   }
 
   .md\:w-\[600px\] {
