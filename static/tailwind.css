@@ -629,6 +629,10 @@ video {
   display: flex;
 }
 
+.grid {
+  display: grid;
+}
+
 .hidden {
   display: none;
 }
@@ -871,6 +875,30 @@ video {
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+.\[grid-template-columns\:repeat\(1\2c minmax\(0\2c 1fr\)\)\] {
+  grid-template-columns: repeat(1,minmax(0,1fr));
+}
+
+.\[grid-template-columns\:repeat\(auto-fill\2c minmax\(128px\2c 256px\)\)\] {
+  grid-template-columns: repeat(auto-fill,minmax(128px,256px));
+}
+
+.\[grid-template-columns\:repeat\(auto-fill\2c minmax\(128px\2c 372px\)\)\] {
+  grid-template-columns: repeat(auto-fill,minmax(128px,372px));
+}
+
+.\[grid-template-columns\:repeat\(auto-fill\2c minmax\(128px\2c 512px\)\)\] {
+  grid-template-columns: repeat(auto-fill,minmax(128px,512px));
+}
+
+.\[grid-template-columns\:repeat\(auto-fill\2c minmax\(128px\2c 512pxpx\)\)\] {
+  grid-template-columns: repeat(auto-fill,minmax(128px,512pxpx));
+}
+
+.\[grid-template-columns\:repeat\(auto-fill\2c minmax\(128px\2c 512x\)\)\] {
+  grid-template-columns: repeat(auto-fill,minmax(128px,512x));
 }
 
 .tiledBackground {

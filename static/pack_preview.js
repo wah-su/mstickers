@@ -55,7 +55,7 @@ async function loadIndex() {
 
 async function loadStickerpacks() {
   stickerpacksIndexContainer.classList.remove("hidden");
-  stickerpacksIndexContainer.classList.add("flex");
+  stickerpacksIndexContainer.classList.add("grid");
   for (let i = 0; i < index.packs.length; i++) {
     const data = await fetch(
       `${window.location.origin}/stickerpacks/${index.packs[i]}`
@@ -77,7 +77,7 @@ async function loadStickerpacks() {
       continue;
     }
     stickerpacksIndexContainer.innerHTML += `
-    <a href="index.html?id=${index.packs[i].split('.json')[0]}" class="flex-grow">
+    <a href="index.html?id=${index.packs[i].split('.json')[0]}">
       <div class="flex gap-4 items-center bg-stone-800 text-slate-200 p-4 rounded-lg">
             <img src="${getStickerImage(data.stickers[0].id)}" alt="${
         data.stickers[0].body
