@@ -53,6 +53,15 @@ async function loadIndex() {
   }
 }
 
+function imageIsLoaded(img_id, img_placeholder) {
+  const __img = document.getElementById(img_id);
+  const __img_placeholder = document.getElementById(img_placeholder);
+  if (__img.complete) {
+    __img_placeholder.classList.add("hidden");
+    __img.classList.remove("hidden");
+  }
+}
+
 async function loadStickerpacks() {
   stickerpacksIndexContainer.classList.remove("hidden");
   stickerpacksIndexContainer.classList.add("grid");
@@ -76,12 +85,16 @@ async function loadStickerpacks() {
     if (!data) {
       continue;
     }
+    const _tmp_id = data.stickers[0].id;
     stickerpacksIndexContainer.innerHTML += `
-    <a href="index.html?id=${index.packs[i].split('.json')[0]}">
+    <a href="index.html?id=${index.packs[i].split(".json")[0]}">
       <div class="flex gap-4 items-center bg-stone-800 text-slate-200 p-4 rounded-lg">
             <img src="${getStickerImage(data.stickers[0].id)}" alt="${
+      data.stickers[0].body
+    }" class="hidden object-contain w-24" id="${_tmp_id}"/>
+      <img src="static/images/sticker.png" alt="${
         data.stickers[0].body
-      }" class="object-contain w-24"/>
+      }" class="object-contain w-24" id="${_tmp_id}-placeholder"/>
             <div>
               <p class="text-2xl">${data.title}</p>
               ${
@@ -93,6 +106,11 @@ async function loadStickerpacks() {
         </div>
     </a>
       `;
+    const __img = document.getElementById(_tmp_id);
+    __img.addEventListener("load", () => {
+      imageIsLoaded(_tmp_id, `${_tmp_id}-placeholder`);
+      __img.removeEventListener("load", this);
+    });
   }
 }
 
@@ -186,10 +204,22 @@ function updatePackInfo(data) {
   for (let i = 0; i < data.stickers.length; i++) {
     const sticker = data.stickers[i];
     const stickerImage = document.createElement("img");
+    const stickerImagePlaceholder = document.createElement("img");
+    stickerImagePlaceholder.src = `static/images/sticker.png`;
+    stickerImagePlaceholder.id = `${sticker.id}-placeholder`;
+    stickerImagePlaceholder.alt = sticker.body;
+    stickerImagePlaceholder.classList.add("object-contain", "md:w-20", "w-24");
+    packStickers.appendChild(stickerImagePlaceholder);
     stickerImage.src = getStickerImage(sticker.id);
+    stickerImage.id = sticker.id;
     stickerImage.alt = sticker.body;
-    stickerImage.classList.add("object-contain", "md:w-20", "w-24");
+    stickerImage.classList.add("object-contain", "md:w-20", "w-24", "hidden");
     packStickers.appendChild(stickerImage);
+
+    stickerImage.addEventListener("load", () => {
+      imageIsLoaded(sticker.id, `${sticker.id}-placeholder`);
+      stickerImage.removeEventListener("load", this);
+    });
   }
 }
 
