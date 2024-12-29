@@ -3,6 +3,8 @@ const packName = document.getElementById("preview_sticker_pack_name");
 const packAuthor_by = document.getElementById("preview_sticker_pack_author_by");
 const packAuthor = document.getElementById("preview_sticker_pack_author");
 const packImage = document.getElementById("preview_sticker_pack_image");
+const packStickersC = document.getElementById("preview_sticker_pack_stickers_container");
+const packStickersCount = document.getElementById("preview_sticker_pack_stickers_count");
 const packStickers = document.getElementById("preview_sticker_pack_stickers");
 const packLinkTG = document.getElementById("preview_sticker_pack_add_tg");
 const packLinkFC = document.getElementById("preview_sticker_pack_add_fc");
@@ -124,6 +126,8 @@ function updatePackInfo(data) {
     packLinkCI.classList.add("flex");
   }
 
+  packStickersC.classList.remove('hidden')
+  packStickersCount.innerHTML = `(${data.stickers.length})`;
   for (let i = 0; i < data.stickers.length; i++) {
     const sticker = data.stickers[i];
     const stickerImage = document.createElement("img");

@@ -83,9 +83,9 @@
             <button class="flex items-center justify-center w-full py-2 text-2xl bg-red-600 rounded-lg" onclick="toggleElementInstruction()">Close</button>
         </div>
 
-        <div class="w-full md:w-[600px]">
+        <div class="w-full md:w-[600px] hidden" id="preview_sticker_pack_stickers_container">
             <div class="p-4 rounded-lg shadow-lg bg-stone-800 text-slate-200 ">
-                <p class="text-2xl">Pack Preview</p>
+                <p class="text-2xl">Pack Preview <span id="preview_sticker_pack_stickers_count"></span></p>
                 <div class="flex flex-wrap gap-4 mt-4 " id="preview_sticker_pack_stickers">
                     <img src="static/images/cinny.png" alt="" class="hidden object-contain w-20" />
                 </div>
