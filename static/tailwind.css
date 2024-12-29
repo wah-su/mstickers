@@ -661,6 +661,10 @@ video {
   width: 6rem;
 }
 
+.w-32 {
+  width: 8rem;
+}
+
 .max-w-\[90\%\] {
   max-width: 90%;
 }
@@ -679,6 +683,14 @@ video {
 
 .justify-center {
   justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
 }
 
 .gap-2 {
@@ -859,12 +871,20 @@ video {
     width: 5rem;
   }
 
+  .md\:w-64 {
+    width: 16rem;
+  }
+
   .md\:max-w-\[768px\] {
     max-width: 768px;
   }
 
   .md\:flex-row {
     flex-direction: row;
+  }
+
+  .md\:items-center {
+    align-items: center;
   }
 
   .md\:whitespace-pre {
