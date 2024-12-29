@@ -2,6 +2,8 @@
     "homeserver_url": "https://synapse.wah.su",
     "packs": [
         "alaska80423nal.json",
-        "alasca40291nal.json"
+        "alasca40291nal.json",
+        "redpandanl.json",
+        "redpanda2nl.json"
     ]
 }
