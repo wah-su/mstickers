@@ -3,12 +3,25 @@ const packName = document.getElementById("preview_sticker_pack_name");
 const packAuthor_by = document.getElementById("preview_sticker_pack_author_by");
 const packAuthor = document.getElementById("preview_sticker_pack_author");
 const packImage = document.getElementById("preview_sticker_pack_image");
+const packStickersC = document.getElementById(
+  "preview_sticker_pack_stickers_container"
+);
+const packStickersCount = document.getElementById(
+  "preview_sticker_pack_stickers_count"
+);
 const packStickers = document.getElementById("preview_sticker_pack_stickers");
 const packLinkTG = document.getElementById("preview_sticker_pack_add_tg");
 const packLinkFC = document.getElementById("preview_sticker_pack_add_fc");
 const packLinkCI = document.getElementById("preview_sticker_pack_add_ci");
-const ElementInstructionOV = document.getElementById("preview_sticker_pack_add_to_element_overlay");
-const ElementInstruction = document.getElementById("preview_sticker_pack_add_to_element");
+const ElementInstructionOV = document.getElementById(
+  "preview_sticker_pack_add_to_element_overlay"
+);
+const ElementInstruction = document.getElementById(
+  "preview_sticker_pack_add_to_element"
+);
+
+const stickerpacksIndexContainer =
+  document.getElementById("stickerpacks_index");
 
 let index = null;
 const searchParams = new URLSearchParams(window.location.search);
@@ -31,11 +44,55 @@ async function loadIndex() {
     });
 
   if (!pack_id) {
-    packName.innerHTML = "no sticker pack provided";
+    loadStickerpacks();
   } else if (!index) {
-    packName.innerHTML = "no index.json found";
+    stickerpacksIndexContainer.classList.remove("hidden");
+    stickerpacksIndexContainer.innerHTML = "no index.json found";
   } else {
     loadPack(pack_id);
+  }
+}
+
+async function loadStickerpacks() {
+  stickerpacksIndexContainer.classList.remove("hidden");
+  stickerpacksIndexContainer.classList.add("flex");
+  for (let i = 0; i < index.packs.length; i++) {
+    const data = await fetch(
+      `${window.location.origin}/stickerpacks/${index.packs[i]}`
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("not found");
+        }
+        return res.json();
+      })
+      .then((json) => {
+        return json;
+      })
+      .catch((e) => {
+        console.error(e);
+        return null;
+      });
+    if (!data) {
+      continue;
+    }
+    stickerpacksIndexContainer.innerHTML += `
+    <a href="index.html?id=${index.packs[i].split('.json')[0]}" class="flex-grow">
+      <div class="flex gap-4 items-center bg-stone-800 text-slate-200 p-4 rounded-lg">
+            <img src="${getStickerImage(data.stickers[0].id)}" alt="${
+        data.stickers[0].body
+      }" class="object-contain w-24"/>
+            <div>
+              <p class="text-2xl">${data.title}</p>
+              ${
+                data.hasOwnProperty("author") && data.author.name
+                  ? `<p class="text-xl">${data.author.name}</p>`
+                  : ""
+              }
+            </div>
+        </div>
+    </a>
+      `;
   }
 }
 
@@ -124,12 +181,14 @@ function updatePackInfo(data) {
     packLinkCI.classList.add("flex");
   }
 
+  packStickersC.classList.remove("hidden");
+  packStickersCount.innerHTML = `(${data.stickers.length})`;
   for (let i = 0; i < data.stickers.length; i++) {
     const sticker = data.stickers[i];
     const stickerImage = document.createElement("img");
     stickerImage.src = getStickerImage(sticker.id);
     stickerImage.alt = sticker.body;
-    stickerImage.classList.add('object-contain', 'w-20')
+    stickerImage.classList.add("object-contain", "md:w-20", "w-24");
     packStickers.appendChild(stickerImage);
   }
 }
