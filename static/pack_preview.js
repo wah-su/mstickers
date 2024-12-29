@@ -133,7 +133,7 @@ function updatePackInfo(data) {
     const stickerImage = document.createElement("img");
     stickerImage.src = getStickerImage(sticker.id);
     stickerImage.alt = sticker.body;
-    stickerImage.classList.add('object-contain', 'w-20')
+    stickerImage.classList.add('object-contain', 'md:w-20', "w-24")
     packStickers.appendChild(stickerImage);
   }
 }
