@@ -33,10 +33,7 @@ let HOMESERVER_URL = "https://matrix-client.matrix.org";
 
 // const makeThumbnailURL = mxc => `${HOMESERVER_URL}/_matrix/media/v3/thumbnail/${mxc.slice(6)}?height=128&width=128&method=scale`
 const makeThumbnailURL = (mxc) =>
-  `${HOMESERVER_URL}/__thumbnail/${mxc.slice(0, 2)}/${mxc.slice(
-    2,
-    4
-  )}/${mxc.slice(4)}`;
+  `${HOMESERVER_URL}${mxc.slice(0, 2)}/${mxc.slice(2,4)}/${mxc.slice(4)}`;
 
 // We need to detect iOS webkit because it has a bug related to scrolling non-fixed divs
 // This is also used to fix scrolling to sections on Element iOS

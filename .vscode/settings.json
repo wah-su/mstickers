@@ -1,0 +1,12 @@
+{
+    "fiveServer.ignore": [
+        "**/node_modules/**",
+        ".vscode/**",
+        ".git/**",
+        "**/*.scss",
+        "**/*.sass",
+        "**/*.css",
+        "**/*.ts",
+        "**/*.js",
+    ]
+}
