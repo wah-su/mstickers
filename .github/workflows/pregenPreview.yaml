@@ -41,6 +41,8 @@ jobs:
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build website
         run: npm run build
+      - name: cleanup
+        run: rm -rf src && rm -rf node_modules && rm -f tailwind.config.js
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
