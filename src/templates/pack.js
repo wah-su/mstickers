@@ -1,6 +1,6 @@
 const PackHead = require("./components/packHead");
 const PackCard = require("./components/packCard");
-const PackLinks = require("./components/PackLinks");
+const PackLinks = require("./components/packLinks");
 const PackPreview = require("./components/packPreview");
 
 function _CreatePackPage(index, pack) {
