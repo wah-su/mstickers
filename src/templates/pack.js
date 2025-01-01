@@ -1,6 +1,7 @@
 const Head = require("./components/head");
 const PackCard = require("./components/packCard");
 const PackLinks = require("./components/PackLinks");
+const PackPreview = require("./components/packPreview");
 
 function _CreatePackPage(index, pack) {
     return `
@@ -20,7 +21,7 @@ function _CreatePackPage(index, pack) {
             <div class="flex flex-col gap-2 justify-center w-full md:w-[768px]">
                 ${PackLinks(pack)}
             </div>
-
+            ${PackPreview(index, pack)}
         </div>
 
         <div class="fixed inset-0 z-10 hidden min-h-screen bg-black opacity-40" id="preview_sticker_pack_add_to_element_overlay"></div>

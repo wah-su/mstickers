@@ -608,12 +608,12 @@ video {
   inset: 0px;
 }
 
-.top-8 {
-  top: 2rem;
-}
-
 .left-1\/2 {
   left: 50%;
+}
+
+.top-8 {
+  top: 2rem;
 }
 
 .-z-10 {
@@ -645,12 +645,20 @@ video {
   display: flex;
 }
 
+.grid {
+  display: grid;
+}
+
 .hidden {
   display: none;
 }
 
 .h-16 {
   height: 4rem;
+}
+
+.h-24 {
+  height: 6rem;
 }
 
 .h-48 {
@@ -669,16 +677,16 @@ video {
   width: 4rem;
 }
 
+.w-24 {
+  width: 6rem;
+}
+
 .w-48 {
   width: 12rem;
 }
 
 .w-full {
   width: 100%;
-}
-
-.max-w-\[90\%\] {
-  max-width: 90%;
 }
 
 .-translate-x-1\/2 {
@@ -879,6 +887,14 @@ video {
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+.\[grid-template-columns\:repeat\(auto-fill\2c 96px\)\] {
+  grid-template-columns: repeat(auto-fill,96px);
+}
+
+.\[grid-template-columns\:repeat\(auto-fill\2c minmax\(128px\2c 372px\)\)\] {
+  grid-template-columns: repeat(auto-fill,minmax(128px,372px));
 }
 
 .tiledBackground {
