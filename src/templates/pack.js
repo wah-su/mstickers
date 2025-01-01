@@ -1,14 +1,15 @@
-const Head = require("./components/head");
+const PackHead = require("./components/packHead");
 const PackCard = require("./components/packCard");
 const PackLinks = require("./components/PackLinks");
 const PackPreview = require("./components/packPreview");
 
 function _CreatePackPage(index, pack) {
     return `
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
     <head>
-        ${Head(index, pack)}
+        ${PackHead(index, pack)}
     </head>
 
     <body class="overflow-x-hidden">
