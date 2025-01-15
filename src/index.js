@@ -10,7 +10,7 @@ let Packs = [];
 const dirents = fs.readdirSync(config.stickerPacksDir, { withFileTypes: true });
 const files = dirents
                 .filter(dirent => dirent.isFile())
-                .filter(dirent => dirent.name.endsWith(".json"))
+                .filter(dirent => (dirent.name.endsWith(".json") && dirent.name != "index.json"))
                 .map(dirent => dirent.name);
 if (files.length == 0) {
     console.error("[ERROR] NO Sticker Packs Found!");
