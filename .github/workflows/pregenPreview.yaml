@@ -42,7 +42,7 @@ jobs:
       - name: Build website
         run: npm run build
       - name: cleanup
-        run: rm -rf src && rm -rf node_modules && rm -f tailwind.config.js
+        run: rm -rf .vscode && rm -rf .github && rm -rf src && rm -rf node_modules && rm -f tailwind.config.js && rm -f .gitignore && rm -f package.json && rm -f package-lock.json
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
