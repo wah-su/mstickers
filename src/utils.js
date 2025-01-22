@@ -36,4 +36,12 @@ function CreatePackDescription(pack) {
   return description.join(" | ");
 }
 
-module.exports = {CreateImageURL, CreatePackDescription};
+function InjectWSConnection() {
+  return `
+  <!-- The following was injected by watch.js script, because we are in a dev mode -->
+  <script src="/src/hotreload.js"></script>
+  <!-- Dev mode: Enabled -->
+  `
+}
+
+module.exports = {CreateImageURL, CreatePackDescription, InjectWSConnection};

@@ -3,8 +3,6 @@ const images = document.querySelectorAll("[data-image-id]");
 images.forEach((image) => {
 
     const spinner = document.querySelector(`[data-spinner-id="${image.getAttribute("data-image-id")}"]`)
-    console.log(image)
-    console.log(spinner)
 
     if (image.height > 0) {
         image.classList.remove("hidden");

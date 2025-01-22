@@ -1,4 +1,4 @@
-const { CreateImageURL } = require("../utils");
+const { CreateImageURL, InjectWSConnection } = require("../utils");
 
 function _PackLink(index, pack) {
 
@@ -56,7 +56,7 @@ function _PackLink(index, pack) {
 `
 }
 
-function _CreatePacksIndex(index, packs) {
+function _CreatePacksIndex(index, packs, isDev) {
 
     let packLinks = [];
     packs.forEach((packLink) => packLinks.push(_PackLink(index, packLink)));
@@ -78,6 +78,7 @@ function _CreatePacksIndex(index, packs) {
         <meta property="og:image:height" content="96" />
         <meta property="og:image:alt" content="sticker" />
         <link href="./static/tailwind.css" rel="stylesheet">
+        ${isDev ? InjectWSConnection() : ""}
     </head>
     <body class="overflow-x-hidden">
         <div class="fixed inset-0 min-h-screen -z-10 tiledBackground"></div>

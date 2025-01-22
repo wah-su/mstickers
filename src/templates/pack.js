@@ -2,14 +2,16 @@ const PackHead = require("./components/packHead");
 const PackCard = require("./components/packCard");
 const PackLinks = require("./components/packLinks");
 const PackPreview = require("./components/packPreview");
+const { InjectWSConnection } = require("../utils")
 
-function _CreatePackPage(index, pack) {
+function _CreatePackPage(index, pack, isDev) {
     return `
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
         ${PackHead(index, pack)}
+        ${isDev ? InjectWSConnection() : ""}
     </head>
 
     <body class="overflow-x-hidden">

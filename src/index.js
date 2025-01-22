@@ -7,6 +7,8 @@ const _CreatePacksIndex = require("./templates/index");
 let PackIndex = null
 let Packs = [];
 
+const isDev = process.env.DEVMODE || false
+
 const dirents = fs.readdirSync(config.stickerPacksDir, { withFileTypes: true });
 const files = dirents
                 .filter(dirent => dirent.isFile())
@@ -29,7 +31,7 @@ if (!fs.existsSync(config.outDir)) fs.mkdirSync(config.outDir);
 PackIndex.packs.forEach((pack) => {
     const packFile = JSON.parse(fs.readFileSync(config.stickerPacksDir + "/" + pack));
     if (!fs.existsSync(config.outDir + "/" + packFile.id)) fs.mkdirSync(config.outDir + "/" + packFile.id);
-    fs.writeFileSync(config.outDir + "/" + packFile.id + "/index.html", _CreatePackPage(PackIndex, packFile));
+    fs.writeFileSync(config.outDir + "/" + packFile.id + "/index.html", _CreatePackPage(PackIndex, packFile, isDev));
     Packs.push({
         id: packFile.id,
         name: packFile.title,
@@ -40,5 +42,5 @@ PackIndex.packs.forEach((pack) => {
     })
     console.log("preview for " + packFile.id + " created");
 })
-fs.writeFileSync(config.outDir + "/index.html", _CreatePacksIndex(PackIndex, Packs));
+fs.writeFileSync(config.outDir + "/index.html", _CreatePacksIndex(PackIndex, Packs, isDev));
 console.log("Generation complete");
