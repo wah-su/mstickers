@@ -69,7 +69,9 @@ PackIndex.packs.forEach((pack) => {
       isDev,
       stickerset: packFile,
       page: "stickerset",
+      pagePath: `/${packFile.id}/`,
       homeserverUrl: config.homeserverUrl,
+      baseUrl: config.baseUrl
     },
     { root: path.join(ParPath, "src/templates") }
   );
@@ -111,8 +113,10 @@ const html = ejs.render(
     isDev,
     stickerset: null,
     page: "index",
+    pagePath: "/",
     packs: Packs,
     homeserverUrl: config.homeserverUrl,
+    baseUrl: config.baseUrl
   },
   { root: path.join(ParPath, "src/templates") }
 );

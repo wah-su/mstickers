@@ -12,6 +12,8 @@
     <meta property="og:image:height" content="<%= image.h %>" />
     <meta property="og:image:alt" content="<%= image.alt %>" />
     <link href="<%= path %>/static/tailwind.css" rel="stylesheet">
+    <meta property="og:url" content="<%- baseUrl %><%= path %><%- pagePath %>" />
+    <meta property="og:logo" content="<%- baseUrl %><%= path %>/static/images/logo-1x.png" />
     <% if (isDev) { %>
     <!-- The following was injected by watch.js script, because we are in a dev mode -->
     <script src="/src/hotreload.js"></script>
