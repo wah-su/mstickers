@@ -74,7 +74,7 @@ function onExit() {
   process.exit(0);
 }
 
-const watcher = chokidar.watch(["./src", "./stickerpacks"], {
+const watcher = chokidar.watch(["./src", "./stickerpacks", "./static"], {
   ignored: (filePath, stats) => filePath.endsWith("index.json"),
   atomic: true,
   awaitWriteFinish: true,

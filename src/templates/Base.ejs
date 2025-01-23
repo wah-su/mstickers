@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('/components/Head', {title, description, image, path, isDev}); %>
+    <body class="overflow-x-hidden">
+        <%- include("/components/Header", {path}) %>
+        <div class="fixed inset-0 min-h-screen -z-10 tiledBackground"></div>
+        <div class="fixed inset-0 min-h-screen -z-20 bg-gradient-to-b from-gray-900 to-black"></div>
+    </body>
+</html>

@@ -2,9 +2,10 @@ const config = require("./config");
 const fs = require("fs");
 const path = require("path");
 const { log } = require("./utils");
+let ejs = require("ejs");
 
-const _CreatePackPage = require("./templates/pack");
-const _CreatePacksIndex = require("./templates/index");
+// const _CreatePackPage = require("./templates/pack");
+// const _CreatePacksIndex = require("./templates/index");
 
 let PackIndex = null;
 let Packs = [];
@@ -51,11 +52,9 @@ if (OutPath != ParPath) {
 }
 
 PackIndex.packs.forEach((pack) => {
-  const packFile = JSON.parse(
-    fs.readFileSync(`${InpPath}${pack}`)
-  );
-  if (!fs.existsSync(`${OutPath}${packFile.id}`)) fs.mkdirSync(`${OutPath}${packFile.id}`);
-  fs.writeFileSync(`${OutPath}${packFile.id}/index.html`, _CreatePackPage(PackIndex, packFile, isDev));
+  const packFile = JSON.parse(fs.readFileSync(`${InpPath}${pack}`));
+  //   if (!fs.existsSync(`${OutPath}${packFile.id}`)) fs.mkdirSync(`${OutPath}${packFile.id}`);
+  //   fs.writeFileSync(`${OutPath}${packFile.id}/index.html`, _CreatePackPage(PackIndex, packFile, isDev));
   Packs.push({
     id: packFile.id,
     name: packFile.title,
@@ -67,7 +66,32 @@ PackIndex.packs.forEach((pack) => {
     rating: packFile.hasOwnProperty("rating") ? packFile.rating : null,
     stickers: packFile.stickers.length,
   });
-  log("INFO", `Created preview for sticker set: ${packFile.title} (${packFile.id})`);
+  log(
+    "INFO",
+    `Created preview for sticker set: ${packFile.title} (${packFile.id})`
+  );
 });
-fs.writeFileSync(`${OutPath}index.html`, _CreatePacksIndex(PackIndex, Packs, isDev));
+
+const indexTemplate = fs.readFileSync(
+  path.join(ParPath, "src/templates/Base.ejs")
+);
+const html = ejs.render(
+  indexTemplate.toString(),
+  {
+    title: "TG -> Matrix Stickers Index",
+    description: `available ${PackIndex.packs.length} sticker packs`,
+    image: {
+        url: "./static/images/sticker.png",
+        mimetype: "image/png",
+        w: "96",
+        h: "96",
+        alt: ""
+    },
+    path: config.OutPath,
+    isDev
+  },
+  { root: path.join(ParPath, "src/templates") }
+);
+log("LOG", `\n\n${html}\n\n`);
+fs.writeFileSync(`${OutPath}index.html`, html);
 log("INFO", "Generation complete");

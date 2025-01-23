@@ -62,28 +62,6 @@ function _CreatePacksIndex(index, packs, isDev) {
     packs.forEach((packLink) => packLinks.push(_PackLink(index, packLink)));
 
     return `
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>TG -> Matrix Stickers Index</title>
-        <link rel="icon" type="image/png" href="./static/images/sticker.png" />
-        <meta property="og:title" content="TG -> Matrix Stickers Index" />
-        <meta property="og:description" content="available ${packs.length} sticker packs" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="./static/images/sticker.png" />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="96" />
-        <meta property="og:image:height" content="96" />
-        <meta property="og:image:alt" content="sticker" />
-        <link href="./static/tailwind.css" rel="stylesheet">
-        ${isDev ? InjectWSConnection() : ""}
-    </head>
-    <body class="overflow-x-hidden">
-        <div class="fixed inset-0 min-h-screen -z-10 tiledBackground"></div>
-        <div class="fixed inset-0 min-h-screen -z-20 bg-gradient-to-b from-gray-900 to-black"></div>
-
         <div class="container flex flex-col items-center justify-center min-h-screen gap-4 p-4 mx-auto">
             <div class="gap-2 [grid-template-columns:100%] md:[grid-template-columns:repeat(auto-fill,minmax(380px,500px))] justify-center items-center grid w-full">
                 ${packLinks.join("\n")}
@@ -91,7 +69,6 @@ function _CreatePacksIndex(index, packs, isDev) {
         </div>
 
         <script src="../static/RenderImages.js"></script>
-    </body>
 `
 }
 
