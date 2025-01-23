@@ -1,9 +1,3 @@
-function CreateImageURL(index, id) {
-  return `${index.homeserver_url}${id.slice(0, 2)}/${id.slice(2, 4)}/${id.slice(
-    4
-  )}`;
-}
-
 function CreatePackDescription(pack) {
   let description = [];
 
@@ -36,14 +30,6 @@ function CreatePackDescription(pack) {
   return description.join(" | ");
 }
 
-function InjectWSConnection() {
-  return `
-  <!-- The following was injected by watch.js script, because we are in a dev mode -->
-  <script src="/src/hotreload.js"></script>
-  <!-- Dev mode: Enabled -->
-  `;
-}
-
 function log(level = "INFO" | "ERROR" | "WARN" | "LOG", message, connected = false) {
   const date = new Date;
   const time = date.toLocaleTimeString()
@@ -67,8 +53,6 @@ function log(level = "INFO" | "ERROR" | "WARN" | "LOG", message, connected = fal
 }
 
 module.exports = {
-  CreateImageURL,
-  CreatePackDescription,
-  InjectWSConnection,
   log,
+  CreatePackDescription
 };

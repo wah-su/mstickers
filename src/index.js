@@ -5,7 +5,6 @@ const { log } = require("./utils");
 let ejs = require("ejs");
 
 // const _CreatePackPage = require("./templates/pack");
-// const _CreatePacksIndex = require("./templates/index");
 
 let PackIndex = null;
 let Packs = [];
@@ -79,16 +78,20 @@ const html = ejs.render(
   indexTemplate.toString(),
   {
     title: "TG -> Matrix Stickers Index",
-    description: `available ${PackIndex.packs.length} sticker packs`,
+    description: `Available ${PackIndex.packs.length} sticker packs`,
     image: {
-        url: "./static/images/sticker.png",
-        mimetype: "image/png",
-        w: "96",
-        h: "96",
-        alt: ""
+      url: "./static/images/sticker.png",
+      mimetype: "image/png",
+      w: "96",
+      h: "96",
+      alt: "",
     },
     path: config.OutPath,
-    isDev
+    isDev,
+    stickerset: null,
+    page: "index",
+    packs: Packs,
+    homeserverUrl: config.homeserverUrl,
   },
   { root: path.join(ParPath, "src/templates") }
 );
