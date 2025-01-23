@@ -67,6 +67,7 @@ function onExit() {
   log("INFO", `Deleted "index.html" file`);
 
   if (fs.existsSync(OutPath) && OutPath != ParPath) {
+    fs.rmdirSync(`${OutPath}`, { recursive: true });
     log("INFO", `Deleted output folder`);
   }
 
