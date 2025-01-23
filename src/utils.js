@@ -1,8 +1,6 @@
-function CreateImageURL(index, id) {
-  return `${index.homeserver_url}${id.slice(0, 2)}/${id.slice(2, 4)}/${id.slice(
-    4
-  )}`;
-}
+CreateImageURL = function (homeserverUrl, id) {
+  return `${homeserverUrl}${id.slice(0, 2)}/${id.slice(2, 4)}/${id.slice(4)}`;
+};
 
 function CreatePackDescription(pack) {
   let description = [];
@@ -36,4 +34,34 @@ function CreatePackDescription(pack) {
   return description.join(" | ");
 }
 
-module.exports = {CreateImageURL, CreatePackDescription};
+function log(
+  level = "INFO" | "ERROR" | "WARN" | "LOG",
+  message,
+  connected = false
+) {
+  const date = new Date();
+  const time = date.toLocaleTimeString();
+  if (connected) {
+    message = `↳${message}`;
+  }
+  switch (level.toUpperCase()) {
+    case "INFO":
+      console.info(`${time}:${level} - ${message}`);
+      break;
+    case "ERROR":
+      console.error(`${time}:${level} - ${message}`);
+      break;
+    case "WARN":
+      console.warn(`${time}:${level} - ${message}`);
+      break;
+    default:
+      console.log(`${time}:LOG - ${message}`);
+      break;
+  }
+}
+
+module.exports = {
+  log,
+  CreatePackDescription,
+  CreateImageURL
+};

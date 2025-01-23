@@ -1,22 +1,26 @@
 const images = document.querySelectorAll("[data-image-id]");
+images.forEach((image, i) => {
+  if (i < 4) {
+    image.setAttribute("loading", "eager");
+  }
 
-images.forEach((image) => {
+  const spinner = document.querySelector(
+    `[data-spinner-id="${image.getAttribute("data-image-id")}"]`
+  );
 
-    const spinner = document.querySelector(`[data-spinner-id="${image.getAttribute("data-image-id")}"]`)
-    console.log(image)
-    console.log(spinner)
+  if (image.height > 0 && image.complete) {
+    image.classList.remove("invisible");
+    spinner.classList.add("invisible");
+    return;
+  } else {
+    image.classList.add("invisible");
+    spinner.classList.remove("invisible");
+  }
 
-    if (image.height > 0) {
-        image.classList.remove("hidden");
-        spinner.classList.add("hidden");
-        return
-    }
-
-    image.addEventListener("load", () => {
-        console.log("image " + image.getAttribute("data-image-id") + " loaded");
-        image.classList.remove("hidden");
-        spinner.classList.add("hidden");
-        image.removeEventListener("load", this);
-    });
-
+  image.addEventListener("load", () => {
+    console.log("image " + image.getAttribute("data-image-id") + " loaded");
+    image.classList.remove("invisible");
+    spinner.classList.add("invisible");
+    image.removeEventListener("load", this);
+  });
 });

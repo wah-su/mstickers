@@ -1,0 +1,5 @@
+<%- include ("/components/Link/AddLink", {name: "telegram", text: "Telegram", image: "telegram.png", link: "https://t.me/addstickers/" + stickerset.id, color: "#2f7ca3"} ) %>
+<% if (stickerset.hasOwnProperty("room_id") && stickerset.room_id) { %>
+    <%- include ("/components/Link/AddLink", {name: "cinny.png", text: "Cinny", image: "cinny.png", link: "https://matrix.to/#/" + stickerset.room_id, color: "#373737"} ) %>
+    <%- include ("/components/Link/AddLink", {name: "fluffychat.png", text: "FluffyChat", image: "fluffychat.png", link: "https://matrix.to/#/" + stickerset.room_id, color: "#282443"} ) %>
+<% }; %>
