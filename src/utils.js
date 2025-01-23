@@ -41,7 +41,34 @@ function InjectWSConnection() {
   <!-- The following was injected by watch.js script, because we are in a dev mode -->
   <script src="/src/hotreload.js"></script>
   <!-- Dev mode: Enabled -->
-  `
+  `;
 }
 
-module.exports = {CreateImageURL, CreatePackDescription, InjectWSConnection};
+function log(level = "INFO" | "ERROR" | "WARN" | "LOG", message, connected = false) {
+  const date = new Date;
+  const time = date.toLocaleTimeString()
+  if (connected) {
+    message = `↳${message}`
+  }
+  switch (level.toUpperCase()) {
+    case "INFO":
+      console.info(`${time}:${level} - ${message}`);
+      break;
+    case "ERROR":
+      console.error(`${time}:${level} - ${message}`);
+      break;
+    case "WARN":
+      console.warn(`${time}:${level} - ${message}`);
+      break;
+    default:
+      console.log(`${time}:LOG - ${message}`);
+      break;
+  }
+}
+
+module.exports = {
+  CreateImageURL,
+  CreatePackDescription,
+  InjectWSConnection,
+  log,
+};
