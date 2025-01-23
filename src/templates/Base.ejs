@@ -1,28 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('/components/Head', {title, description, image, path, isDev}); %>
+<%- include('/components/Head', {title, description, image, path, isDev}); %>
     <body class="overflow-x-hidden text-white">
         <%- include("/components/Header", {path, stickerset}) %>
-        <div class="fixed inset-0 min-h-screen -z-10 tiledBackground"></div>
-        <div class="fixed inset-0 min-h-screen -z-20 bg-gradient-to-b from-gray-900 to-black"></div>
-        <div class="container px-8 py-4 mx-auto">
-            <% if (page == "index") { %>
-                <div class="grid w-full h-full grid-cols-1 gap-2 lg:grid-cols-2 2xl:grid-cols-3">
-                    <% packs.forEach(function(pack){ %>
-                        <%- include('/components/Link/Stickerset', {path, homeserverUrl, pack}); %>
-                    <% }); %>
-                </div>
-            <% }; %>
-
-            <div class="flex flex-wrap items-center gap-4 py-4 mx-auto">
-                <a class="flex items-center gap-2 text-lg" href="https://wah.su/radiquum"> <span>by @radiquum</span> <img class="object-contain w-8 rounded-full aspect-square" src="https://radiquum.wah.su/static/avatar_512.jpg" alt="" /></a>
-                <div class="flex items-center gap-2">
-                    <p class="text-lg">Find us on:</p>
-                    <a href="https://github.com/wah-su"><img class="object-contain w-8 rounded-full aspect-square" src="<%- path %>/static/images/github-mark-white.png" alt="github" /></a>
-                    <a href="https://wah.su"><img class="object-contain w-8 rounded-full aspect-square" src="<%- path %>/static/images/captive_portal_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" alt="website" /></a>
-                </div>
+            <div class="fixed inset-0 min-h-screen -z-10 tiledBackground"></div>
+            <div class="fixed inset-0 min-h-screen -z-20 bg-gradient-to-b from-gray-900 to-black"></div>
+            <div class="container px-4 py-4 mx-auto sm:px-8">
+                <% if (page=="index" ) { %>
+                        <div class="grid w-full h-full grid-cols-1 gap-2 lg:grid-cols-2 2xl:grid-cols-3">
+                            <% packs.forEach(function(pack){ %>
+                                <%- include('/components/Link/Stickerset', {path, homeserverUrl, pack}); %>
+                            <% }); %>
+                        </div>
+                        <%- include('/components/Footer'); %>
+                    <% }; %>
+                        <% if (page=="stickerset" ) { %>
+                            <div class="flex flex-wrap gap-4">
+                                <div class="flex flex-col w-full gap-2 lg:w-[49%] h-fit">
+                                    <%- include('/components/Pack/Description', {homeserverUrl, stickerset}); %>
+                                    <%- include('/components/Pack/Links', {stickerset}); %>
+                                    <div
+                                        class="hidden px-4 py-2 rounded-md md:block sm:px-8 bg-slate-800">
+                                        <p
+                                            class="flex items-center gap-2 mb-4 text-lg border-b md:text-2xl border-slate-400">
+                                            <img src="<%- path %>/static/images/element.png" alt=""
+                                                class="object-contain w-8 py-2" /> Add StickerPicker to
+                                            Element
+                                        </p>
+                                        <p>
+                                            Type /devtools in chat. Other -> Explore account data in
+                                            Element Web
+                                            (not "room account data", must be the global one), edit the
+                                            m.widgets account data event to have the following content:
+                                        </p>
+                                        <p class="whitespace-pre">
+{
+    "stickerpicker": {
+    "content": {
+    "type": "m.stickerpicker",
+    "url": "https://matrix.wah.su/stickerpicker/?theme=$theme",
+    "name": "Stickerpicker",
+    "creatorUserId": "@you:matrix.server.name",
+    "data": {}
+    },
+    "sender": "@you:matrix.server.name",
+    "state_key": "stickerpicker",
+    "type": "m.widget",
+    "id": "stickerpicker"
+    }
+}
+                                        </p>
+                                        <p>
+                                            If you do not yet have a m.widgets event, simply create it
+                                            with that
+                                            content. You can also use the client-server API directly
+                                            instead of
+                                            using Element Web.
+                                            <br />
+                                            <br />
+                                            The theme=$theme query parameter will make the widget
+                                            conform to
+                                            Element's theme automatically. You can also use light, dark
+                                            or black
+                                            instead of $theme to always use a specific theme.
+                                        </p>
+                                    </div>
+                                    <div class="hidden lg:block">
+                                        <%- include('/components/Footer'); %>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col w-full gap-2 lg:w-[49%] h-fit">
+                                    <%- include('/components/Pack/Preview', {homeserverUrl, stickerset}); %>
+                                </div>
+                                <div class="block lg:hidden">
+                                    <%- include('/components/Footer'); %>
+                                </div>
+                            </div>
+                        <% }; %>
             </div>
-        </div>
-        <script src="<%- path %>/static/RenderImages.js"></script>
+            <script src="<%- path %>/static/RenderImages.js"></script>
     </body>
+    <% if (page=="stickerset" ) { %>
+        <script>
+            const stickerpackdesc = document.getElementById("stickerpackdesc");
+            const stickerpackname = document.getElementById("stickerpackname");
+            window.onscroll = () => {
+                const current_Y_pos = window.scrollY;
+                if (
+                    current_Y_pos >
+                    Math.floor(stickerpackdesc.clientHeight * 0.7)
+                ) {
+                    stickerpackname.style.setProperty("--tw-translate-y", "0%");
+                } else {
+                    stickerpackname.style.setProperty("--tw-translate-y", "-200%");
+                }
+            };
+        </script>
+    <% }; %>
 </html>

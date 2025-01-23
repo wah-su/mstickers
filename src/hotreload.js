@@ -1,4 +1,4 @@
-let webSocket = new WebSocket('ws://127.0.0.1:3001');
+let webSocket = new WebSocket(`ws://${window.location.hostname}:3001`);
 webSocket.onmessage = function(e) {
     if (e.data == "RELOAD") {
         console.log("Reloading page after build")

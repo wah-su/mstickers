@@ -1,6 +1,6 @@
 const config = {
     stickerPacksDir: "stickerpacks",
-    outDir: "sticker",
+    outDir: "",
     homeserverUrl: "https://synapse.wah.su/__thumbnail/"
 };
 

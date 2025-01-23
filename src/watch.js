@@ -10,6 +10,7 @@ const { log } = require("./utils");
 let triggered = 0;
 const delay = 1000;
 let SIGINTCount = 0;
+let WSclients = [];
 
 const InpPath = path
   .join(__dirname, "../", config.stickerPacksDir, "./")
@@ -20,7 +21,7 @@ log("INFO", `Sticker sets directory: ${InpPath}`);
 log("INFO", `Output directory: ${OutPath}`);
 log("INFO", `Working directory: ${ParPath}`);
 
-function onChange(wss) {
+function onChange() {
   if (triggered != 0 && Date.now() - triggered < delay) {
     log("WARN", `Rebuild was triggered less than a ${delay}ms ago!`, true);
     return;
@@ -38,9 +39,9 @@ function onChange(wss) {
       return;
     }
     log("INFO", stdout);
-    if (wss) {
+    if (WSclients.length > 0) {
       log("INFO", "Reloading web page...");
-      wss.send("RELOAD");
+      WSclients.forEach((ws) => ws.send("RELOAD"));
     }
   });
 }
@@ -86,18 +87,19 @@ function startServerWithRebuild() {
   const folder = path.join(__dirname, "..");
   const wss = new WebSocket.Server({ port: 3001 });
 
-  let WSclient = null;
 
   wss.on("connection", (ws) => {
-    WSclient = ws;
+    WSclients.push(ws);
+    log("INFO", `Client ${WSclients.length} connected`)
     ws.send("CONNECTED");
   });
 
+
   process.on("SIGINT", () => {
     SIGINTCount += 1;
-    if (WSclient) {
+    if (WSclients.length > 0) {
       async function _closeWS() {
-        await WSclient.close();
+        WSclients.forEach(async (ws) => await ws.close())
       }
       _closeWS();
     }
@@ -118,15 +120,15 @@ function startServerWithRebuild() {
     watcher
       .on("add", (path) => {
         log("INFO", `File ${path} has been added, rebuilding...`);
-        onChange(WSclient);
+        onChange();
       })
       .on("change", (path) => {
         log("INFO", `File ${path} has been changed, rebuilding...`);
-        onChange(WSclient);
+        onChange();
       })
       .on("unlink", (path) => {
         log("INFO", `File ${path} has been removed, rebuilding...`);
-        onChange(WSclient);
+        onChange();
       });
   });
 }

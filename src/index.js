@@ -1,10 +1,8 @@
 const config = require("./config");
 const fs = require("fs");
 const path = require("path");
-const { log } = require("./utils");
+const { log, CreateImageURL, CreatePackDescription } = require("./utils");
 let ejs = require("ejs");
-
-// const _CreatePackPage = require("./templates/pack");
 
 let PackIndex = null;
 let Packs = [];
@@ -52,8 +50,31 @@ if (OutPath != ParPath) {
 
 PackIndex.packs.forEach((pack) => {
   const packFile = JSON.parse(fs.readFileSync(`${InpPath}${pack}`));
-  //   if (!fs.existsSync(`${OutPath}${packFile.id}`)) fs.mkdirSync(`${OutPath}${packFile.id}`);
-  //   fs.writeFileSync(`${OutPath}${packFile.id}/index.html`, _CreatePackPage(PackIndex, packFile, isDev));
+  const Template = fs.readFileSync(
+    path.join(ParPath, "src/templates/Base.ejs")
+  );
+  const html = ejs.render(
+    Template.toString(),
+    {
+      title: packFile.title,
+      description: CreatePackDescription(packFile),
+      image: {
+        url: CreateImageURL(config.homeserverUrl, packFile.stickers[0].id),
+        mimetype: packFile.stickers[0].info.mimetype,
+        w: packFile.stickers[0].info.w,
+        h: packFile.stickers[0].info.h,
+        alt: packFile.stickers[0].info.alt,
+      },
+      path: config.outDir ? `/${config.outDir}` : "",
+      isDev,
+      stickerset: packFile,
+      page: "stickerset",
+      homeserverUrl: config.homeserverUrl,
+    },
+    { root: path.join(ParPath, "src/templates") }
+  );
+  if (!fs.existsSync(`${OutPath}${packFile.id}`)) fs.mkdirSync(`${OutPath}${packFile.id}`);
+  fs.writeFileSync(`${OutPath}${packFile.id}/index.html`, html);
   Packs.push({
     id: packFile.id,
     name: packFile.title,
@@ -86,7 +107,7 @@ const html = ejs.render(
       h: "96",
       alt: "",
     },
-    path: config.OutPath,
+    path: config.outDir ? `/${config.outDir}` : "",
     isDev,
     stickerset: null,
     page: "index",
@@ -95,6 +116,5 @@ const html = ejs.render(
   },
   { root: path.join(ParPath, "src/templates") }
 );
-log("LOG", `\n\n${html}\n\n`);
 fs.writeFileSync(`${OutPath}index.html`, html);
 log("INFO", "Generation complete");
