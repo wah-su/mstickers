@@ -1,26 +1,35 @@
 const images = document.querySelectorAll("[data-image-id]");
-images.forEach((image, i) => {
-  if (i < 4) {
-    image.setAttribute("loading", "eager");
+
+let observer = new IntersectionObserver(function(entries, self) {
+  for (let entry of entries) {
+    if (entry.isIntersecting) {
+      let elem = entry.target;
+      preload_image(elem);
+      self.unobserve(elem);
+    }
   }
+}, {
+  rootMargin: '400px 400px 400px 400px'
+});
 
-  const spinner = document.querySelector(
-    `[data-spinner-id="${image.getAttribute("data-image-id")}"]`
-  );
+function preload_image(img) {
+  img.src = img.dataset.imageSrc;
+  img.setAttribute("loading", "eager")
+  const id = img.dataset.imageId
+  const spinner = document.querySelector(`[data-spinner-id="${id}"]`);
 
-  if (image.height > 0 && image.complete) {
-    image.classList.remove("invisible");
+  console.log(`Loading ${id}`);
+  img.addEventListener("load", () => {
+    console.log(`image ${id} loaded`);
+    img.classList.remove("invisible");
     spinner.classList.add("invisible");
-    return;
-  } else {
-    image.classList.add("invisible");
-    spinner.classList.remove("invisible");
-  }
-
-  image.addEventListener("load", () => {
-    console.log("image " + image.getAttribute("data-image-id") + " loaded");
-    image.classList.remove("invisible");
-    spinner.classList.add("invisible");
-    image.removeEventListener("load", this);
+    img.removeEventListener("load", this);
   });
+}
+
+images.forEach((image, i) => {
+  if (i <= 5) {
+    image.setAttribute("loading", "eager"); // should eager load first 6 (0-5) images
+  }
+  observer.observe(image)
 });
