@@ -1,11 +1,11 @@
 <% include('/functions') %>
 <header class="sticky top-0 left-0 right-0 bg-[#1d1f3d] rounded-b-lg z-10">
-    <div class="container flex items-center justify-between px-8 py-4 mx-auto min-h-16">
+    <div class="container flex items-center justify-between gap-4 px-8 py-4 mx-auto min-h-16">
         <a href="<%- path %>/index.html"><img class="h-6 sm:h-10" src="<%- path %>/static/images/logo.svg" alt="index page"/></a>
         <% if (stickerset) { %>
             <div id="stickerpackname" class="-p-4 flex items-center gap-2 transition-transform translate-y-[var(--tw-translate-y)]" style="--tw-translate-y:-200%">
                 <img src="<%- CreateImageURL(homeserverUrl, stickerset.stickers[0].id) %>" class="object-contain w-8 aspect-square" />
-                <p class="text-lg sm:text-xl"><%- stickerset.title %></p>
+                <p class="text-lg sm:text-xl line-clamp-1"><%- stickerset.title %></p>
             </div>
         <% }; %>
         <div class="items-center justify-center hidden gap-2 text-white sm:flex sm:gap-4 sm:text-xl">
